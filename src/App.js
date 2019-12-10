@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { sampleText } from './sampleText'
 import marked from 'marked'
+import Error from './components/Error'
 
 class App extends Component {
   state = {
@@ -40,15 +41,16 @@ class App extends Component {
         <div className='row'>
           <div className='col-sm-6'>
             <textarea
+              style={{ backgroundColor: this.state.text.length === 0 ? 'pink' : 'white' }}
               onChange={ this.handleChange }
               value={ this.state.text }
               rows='35'
-
               className='form-control' />
+
+              <Error text={ this.state.text } />
           </div>
           <div className='col-sm-6'>
-            <div dangerouslySetInnerHTML={ this.renderText(this.state.text) }>
-            </div>
+            <div dangerouslySetInnerHTML={ this.renderText(this.state.text) }></div>
           </div>
         </div>
       </div>
